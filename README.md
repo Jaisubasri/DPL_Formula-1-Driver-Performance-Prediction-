@@ -10,12 +10,11 @@ With the amount of data being captured, analyzed and used to design, build and d
 
 ![F1 Logo](https://logos-world.net/wp-content/uploads/2023/12/F1-Logo.png)
 
-
-
-
-## Demo
+## Hosted Website (Try for yourself)
 
 https://jaisubasri-dpl-formula-1-driver-performance--frontendapp-3nnohf.streamlit.app/
+
+## Demo Video
 
 ## Documentation
 
