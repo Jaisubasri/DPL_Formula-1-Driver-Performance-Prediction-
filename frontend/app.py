@@ -30,7 +30,7 @@ if selected == "Preprocessing":
     st.title("📂 Data Preprocessing")
     # Display HTML files
     st.write("### View Reports")
-    html_files = [f for f in os.listdir("D:\SEM 8\DPL\data_statistics") if f.endswith(".html")]
+    html_files = [f for f in os.listdir("..\data_statistics") if f.endswith(".html")]
     st.markdown("<h3 style='text-align: center;'> STATISTICS OF THE PREPROCESSED FILES </h3>", unsafe_allow_html=True)
     cols = st.columns(4) 
 
@@ -56,12 +56,12 @@ if selected == "Preprocessing":
 
         with cols[idx % 4]:  # Arrange in 4 columns
             if st.button(display_name):
-                webbrowser.open(f'file:///D:/SEM%208/DPL/data_statistics/{file}')
+                webbrowser.open(f'file:///../data_statistics/{file}')
                 
 elif selected == "Feature Engineering":
     
     def load_data():
-        return pd.read_csv("D:/SEM 8/DPL/feature_engineering/Normalized_engineered_features.csv")  # Replace with your actual CSV path
+        return pd.read_csv("../feature_engineering/Normalized_engineered_features.csv")  # Replace with your actual CSV path
 
     def feature_engineering():
         st.title("🛠 Feature Engineering")
@@ -170,11 +170,11 @@ elif selected=="📈 Model & Predictions":
 
         return merged_data, label_encoders, scaler
 
-    drivers_data=pd.read_csv('D:/SEM 8/DPL/preprocessed_dataset/drivers_preprocessed.csv')
-    constructors_data=pd.read_csv('D:/SEM 8/DPL/preprocessed_dataset//constructors_preprocessed.csv')
-    race_data=pd.read_csv('D:/SEM 8/DPL/preprocessed_dataset/races_preprocessed.csv')
-    results_data=pd.read_csv('D:/SEM 8/DPL/preprocessed_dataset/results_preprocessed.csv')
-    status_data=pd.read_csv('D:/SEM 8/DPL/preprocessed_dataset/status_preprocessed.csv')
+    drivers_data=pd.read_csv('../preprocessed_dataset/drivers_preprocessed.csv')
+    constructors_data=pd.read_csv('../preprocessed_dataset//constructors_preprocessed.csv')
+    race_data=pd.read_csv('../preprocessed_dataset/races_preprocessed.csv')
+    results_data=pd.read_csv('../preprocessed_dataset/results_preprocessed.csv')
+    status_data=pd.read_csv('../preprocessed_dataset/status_preprocessed.csv')
     prepared_data, label_encoders, scaler = prepare_input_data(race_data, results_data, drivers_data, constructors_data, status_data)
 
     model_file = st.file_uploader("📂 Upload LSTM Model (.keras)", type=["keras"])
