@@ -30,7 +30,8 @@ if selected == "Preprocessing":
     st.title("📂 Data Preprocessing")
     # Display HTML files
     st.write("### View Reports")
-    html_files = [f for f in os.listdir("..\data_statistics") if f.endswith(".html")]
+    data_dir = os.path.join("..", "data_statistics")
+    html_files = [f for f in os.listdir(data_dir) if f.endswith(".html")]
     st.markdown("<h3 style='text-align: center;'> STATISTICS OF THE PREPROCESSED FILES </h3>", unsafe_allow_html=True)
     cols = st.columns(4) 
 
@@ -169,12 +170,16 @@ elif selected=="📈 Model & Predictions":
         merged_data[numerical_columns] = scaler.fit_transform(merged_data[numerical_columns])
 
         return merged_data, label_encoders, scaler
-
-    drivers_data=pd.read_csv('../preprocessed_dataset/drivers_preprocessed.csv')
-    constructors_data=pd.read_csv('../preprocessed_dataset//constructors_preprocessed.csv')
-    race_data=pd.read_csv('../preprocessed_dataset/races_preprocessed.csv')
-    results_data=pd.read_csv('../preprocessed_dataset/results_preprocessed.csv')
-    status_data=pd.read_csv('../preprocessed_dataset/status_preprocessed.csv')
+    driver_data_path = os.path.join(".." , "preprocessed_dataset" ,"drivers_preprocessed.csv")
+    constructors_data_path = os.path.join("..", "preprocessed_dataset", "constructors_preprocessed.csv")
+    race_data_path = os.path.join("..", "preprocessed_dataset", "races_preprocessed.csv")
+    results_data_path = os.path.join("..", "preprocessed_dataset", "results_preprocessed.csv")
+    status_data_path = os.path.join("..", "preprocessed_dataset", "status_preprocessed.csv")
+    drivers_data=pd.read_csv(driver_data_path)
+    constructors_data=pd.read_csv(constructors_data_path)
+    race_data=pd.read_csv(race_data_path)
+    results_data=pd.read_csv(results_data_path)
+    status_data=pd.read_csv(status_data_path)
     prepared_data, label_encoders, scaler = prepare_input_data(race_data, results_data, drivers_data, constructors_data, status_data)
 
     model_file = st.file_uploader("📂 Upload LSTM Model (.keras)", type=["keras"])
