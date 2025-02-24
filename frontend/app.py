@@ -171,23 +171,22 @@ elif selected=="📈 Model & Predictions":
 
         return merged_data, label_encoders, scaler
     
+
     drivers_data=pd.read_csv("/mount/src/dpl_formula-1-driver-performance-prediction-/preprocessed_dataset/drivers_preprocessed.csv" )
     constructors_data=pd.read_csv("/mount/src/dpl_formula-1-driver-performance-prediction-/preprocessed_dataset/constructors_preprocessed.csv")
     race_data=pd.read_csv("/mount/src/dpl_formula-1-driver-performance-prediction-/preprocessed_dataset/races_preprocessed.csv")
     results_data=pd.read_csv("/mount/src/dpl_formula-1-driver-performance-prediction-/preprocessed_dataset/results_preprocessed.csv")
     status_data=pd.read_csv("/mount/src/dpl_formula-1-driver-performance-prediction-/preprocessed_dataset/status_preprocessed.csv")
     prepared_data, label_encoders, scaler = prepare_input_data(race_data, results_data, drivers_data, constructors_data, status_data)
+    
 
-    model_file = load_model("/mount/src/dpl_formula-1-driver-performance-prediction-/model/lstm_time_series_model.keras")
 
+    model_file =1
     if model_file:
-            # Save uploaded file to a temporary location
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".keras") as tmp_file:
-            tmp_file.write(model_file.read())
-            tmp_model_path = tmp_file.name
+        
 
         # Load the .keras model with custom_objects
-        model = load_model(tmp_model_path, custom_objects={'Orthogonal': Orthogonal})
+        model = load_model("/mount/src/dpl_formula-1-driver-performance-prediction-/model/lstm_time_series_model.keras", custom_objects={'Orthogonal': Orthogonal})
         st.success("✅ Model Loaded Successfully!")
 
         st.write("### Preview of Data", prepared_data.head())
