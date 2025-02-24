@@ -27,6 +27,24 @@ with st.sidebar:
     )
 
 if selected == "Preprocessing":
+    
+    custom_css = """
+    <style>
+        .stDownloadButton > button {
+            width: 100%;
+            height: 60px;
+            border-radius: 10px;
+            background-color: black;
+            color: white;
+            font-size: 14px;
+        }
+        .stDownloadButton > button:hover {
+            background-color: red;
+            color: black;
+        }
+    </style>
+    """
+    st.markdown(custom_css, unsafe_allow_html=True)
     st.title("📂 Data Preprocessing")
 
     # Display HTML files
