@@ -178,7 +178,7 @@ elif selected=="📈 Model & Predictions":
     status_data=pd.read_csv("/mount/src/dpl_formula-1-driver-performance-prediction-/preprocessed_dataset/status_preprocessed.csv")
     prepared_data, label_encoders, scaler = prepare_input_data(race_data, results_data, drivers_data, constructors_data, status_data)
 
-    model_file = model = load_model("/mount/src/dpl_formula-1-driver-performance-prediction-/model/lstm_time_series_model.keras")
+    model_file = load_model("/mount/src/dpl_formula-1-driver-performance-prediction-/model/lstm_time_series_model.keras")
 
     if model_file:
             # Save uploaded file to a temporary location
