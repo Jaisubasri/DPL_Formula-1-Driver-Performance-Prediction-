@@ -10,6 +10,7 @@ from sklearn.preprocessing import MinMaxScaler,LabelEncoder
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 from tensorflow.keras.models import load_model
 from tensorflow.keras.initializers import Orthogonal
+from PIL import Image
 import os
 import tempfile
 import sys
@@ -208,8 +209,7 @@ elif selected=="📈 Model & Predictions":
     status_data=pd.read_csv("/mount/src/dpl_formula-1-driver-performance-prediction-/preprocessed_dataset/status_preprocessed.csv")
     prepared_data, label_encoders, scaler = prepare_input_data(race_data, results_data, drivers_data, constructors_data, status_data)
     
-
-
+    
     model_file =1
     if model_file:
         
@@ -300,3 +300,20 @@ elif selected=="📈 Model & Predictions":
         ax.set_title("Year-over-Year Points Improvement")
         ax.legend()
         st.pyplot(fig)
+        
+elif selected=="Visvualization":
+    
+
+    image_dir = "/mount/src/dpl_formula-1-driver-performance-prediction-/powerbi_images"
+    image_files = [f for f in os.listdir(image_dir) if f.endswith(('.png', '.jpg', '.jpeg'))]
+    selected_images = image_files
+
+    cols = st.columns(5)
+
+    # Iterate over the selected images and display them with subheaders
+    for idx, image_file in enumerate(selected_images):
+        image_path = os.path.join(image_dir, image_file)
+        image = Image.open(image_path)
+        with cols[idx]:
+            st.subheader(f"Image {idx + 1}")
+            st.image(image, use_column_width=True)

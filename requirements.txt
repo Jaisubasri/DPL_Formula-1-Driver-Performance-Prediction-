@@ -7,4 +7,3 @@ matplotlib
 plotly
 scikit-learn
 tensorflow
-path
