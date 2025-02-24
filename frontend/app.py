@@ -303,7 +303,7 @@ elif selected=="📈 Model & Predictions":
         
 elif selected=="📊 Visualization":
     
-
+    st.title("🏎️ F1 Driver Standings Visualization")
     image_dir = "/mount/src/dpl_formula-1-driver-performance-prediction-/powerbi_images"
     image_files = [f for f in os.listdir(image_dir) if f.endswith(('.png', '.jpg', '.jpeg'))]
     selected_images = image_files
