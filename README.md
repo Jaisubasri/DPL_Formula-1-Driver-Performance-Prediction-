@@ -14,8 +14,6 @@ With the amount of data being captured, analyzed and used to design, build and d
 
 https://jaisubasri-dpl-formula-1-driver-performance--frontendapp-3nnohf.streamlit.app/
 
-## Demo Video
-
 ## Documentation
 
 https://github.com/Jaisubasri/DPL_Formula-1-Driver-Performance-Prediction-/blob/main/info_file/Documentation_DPL.pdf
