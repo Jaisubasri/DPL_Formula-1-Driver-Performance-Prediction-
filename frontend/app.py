@@ -170,19 +170,15 @@ elif selected=="📈 Model & Predictions":
         merged_data[numerical_columns] = scaler.fit_transform(merged_data[numerical_columns])
 
         return merged_data, label_encoders, scaler
-    driver_data_path = os.path.join("mount/src/dpl_formula-1-driver-performance-prediction-" , "preprocessed_dataset" ,"drivers_preprocessed.csv")
-    constructors_data_path = os.path.join("mount/src/dpl_formula-1-driver-performance-prediction-", "preprocessed_dataset", "constructors_preprocessed.csv")
-    race_data_path = os.path.join("mount/src/dpl_formula-1-driver-performance-prediction-", "preprocessed_dataset", "races_preprocessed.csv")
-    results_data_path = os.path.join("mount/src/dpl_formula-1-driver-performance-prediction-", "preprocessed_dataset", "results_preprocessed.csv")
-    status_data_path = os.path.join("mount/src/dpl_formula-1-driver-performance-prediction-", "preprocessed_dataset", "status_preprocessed.csv")
-    drivers_data=pd.read_csv(driver_data_path)
-    constructors_data=pd.read_csv(constructors_data_path)
-    race_data=pd.read_csv(race_data_path)
-    results_data=pd.read_csv(results_data_path)
-    status_data=pd.read_csv(status_data_path)
+    
+    drivers_data=pd.read_csv("/mount/src/dpl_formula-1-driver-performance-prediction-/preprocessed_dataset/drivers_preprocessed.csv" )
+    constructors_data=pd.read_csv("/mount/src/dpl_formula-1-driver-performance-prediction-/preprocessed_dataset/constructors_preprocessed.csv")
+    race_data=pd.read_csv("/mount/src/dpl_formula-1-driver-performance-prediction-/preprocessed_dataset/races_preprocessed.csv")
+    results_data=pd.read_csv("/mount/src/dpl_formula-1-driver-performance-prediction-/preprocessed_dataset/results_preprocessed.csv")
+    status_data=pd.read_csv("/mount/src/dpl_formula-1-driver-performance-prediction-/preprocessed_dataset/status_preprocessed.csv")
     prepared_data, label_encoders, scaler = prepare_input_data(race_data, results_data, drivers_data, constructors_data, status_data)
 
-    model_file = st.file_uploader("📂 Upload LSTM Model (.keras)", type=["keras"])
+    model_file = model = load_model("/mount/src/dpl_formula-1-driver-performance-prediction-/model/lstm_time_series_model.keras")
 
     if model_file:
             # Save uploaded file to a temporary location
