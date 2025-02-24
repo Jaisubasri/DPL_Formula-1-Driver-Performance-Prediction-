@@ -55,13 +55,20 @@ if selected == "Preprocessing":
             </style>
         """
         st.markdown(button_style, unsafe_allow_html=True)
+        
+        
+        file_path = os.path.join(data_dir, file)
+        
+        with open(file_path, "rb") as f:
+            file_data = f.read()
 
         with cols[idx % 4]:
-            if st.button(display_name):
-                file_path = os.path.join(data_dir, file)
-                with open(file_path, 'r', encoding='utf-8') as f:
-                    html_content = f.read()
-                    st.components.v1.html(html_content, height=600, scrolling=True)
+            st.download_button(
+                label=f"Download {display_name}",
+                data=file_data,
+                file_name=file,
+                mime='text/html'
+            )
                 
 elif selected == "Feature Engineering":
     
