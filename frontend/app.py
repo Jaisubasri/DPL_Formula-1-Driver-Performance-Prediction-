@@ -28,36 +28,40 @@ with st.sidebar:
 
 if selected == "Preprocessing":
     st.title("📂 Data Preprocessing")
+
     # Display HTML files
     st.write("### View Reports")
-    data_dir = ("/mount/src/dpl_formula-1-driver-performance-prediction-/data_statistics")
+    data_dir = "/mount/src/dpl_formula-1-driver-performance-prediction-/data_statistics"
     html_files = [f for f in os.listdir(data_dir) if f.endswith(".html")]
     st.markdown("<h3 style='text-align: center;'> STATISTICS OF THE PREPROCESSED FILES </h3>", unsafe_allow_html=True)
-    cols = st.columns(4) 
+    cols = st.columns(4)
 
     for idx, file in enumerate(html_files):
         display_name = '_'.join(file.rsplit('_', 2)[:-2])
-        button_style = f"""
+        button_style = """
             <style>
-                div.stButton > button {{
+                div.stButton > button {
                     width: 100%;
                     height: 60px;
                     border-radius: 10px;
                     background-color: black;
                     color: white;
                     font-size: 14px;
-                }}
-                div.stButton > button:hover {{
+                }
+                div.stButton > button:hover {
                     background-color: red;
                     color: black;
-                }}
+                }
             </style>
         """
         st.markdown(button_style, unsafe_allow_html=True)
 
-        with cols[idx % 4]:  # Arrange in 4 columns
+        with cols[idx % 4]:
             if st.button(display_name):
-                webbrowser.open(f'file:////mount/src/dpl_formula-1-driver-performance-prediction-/data_statistics/{file}')
+                file_path = os.path.join(data_dir, file)
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    html_content = f.read()
+                    st.components.v1.html(html_content, height=600, scrolling=True)
                 
 elif selected == "Feature Engineering":
     
