@@ -21,7 +21,7 @@ st.set_page_config(page_title="Time Series App", layout="wide")
 with st.sidebar:
     selected = option_menu(
         menu_title="Navigation",
-        options=["Preprocessing", "Feature Engineering", "📈 Model & Predictions", "📊 Visualization"],
+        options=["Preprocessing", "Feature Engineering", "📈 Model & Predictions", "Visualization"],
         icons=["gear", "filter","cut-line","cut-line"],
         menu_icon="cast",
         default_index=0
@@ -301,7 +301,7 @@ elif selected=="📈 Model & Predictions":
         ax.legend()
         st.pyplot(fig)
         
-elif selected=="📊 Visualization":
+elif selected =="Visualization":
     
     st.title("🏎️ F1 Driver Standings Visualization")
     image_dir = "/mount/src/dpl_formula-1-driver-performance-prediction-/powerbi_images"
