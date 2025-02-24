@@ -21,7 +21,7 @@ st.set_page_config(page_title="Time Series App", layout="wide")
 with st.sidebar:
     selected = option_menu(
         menu_title="Navigation",
-        options=["Preprocessing", "Feature Engineering", "📈 Model & Predictions", "Visualization"],
+        options=["Preprocessing", "Feature Engineering", "📈 Model & Predictions", "📈 Visualization"],
         icons=["gear", "filter","cut-line","cut-line"],
         menu_icon="cast",
         default_index=0
@@ -301,19 +301,34 @@ elif selected=="📈 Model & Predictions":
         ax.legend()
         st.pyplot(fig)
         
-elif selected =="Visualization":
+elif selected =="📈 Visualization":
     
     st.title("🏎️ F1 Driver Standings Visualization")
+
+    # Directory containing images
     image_dir = "/mount/src/dpl_formula-1-driver-performance-prediction-/powerbi_images"
     image_files = [f for f in os.listdir(image_dir) if f.endswith(('.png', '.jpg', '.jpeg'))]
-    selected_images = image_files
 
-    cols = st.columns(5)
+    # Initialize session state for image index
+    if 'img_index' not in st.session_state:
+        st.session_state.img_index = 0
 
-    # Iterate over the selected images and display them with subheaders
-    for idx, image_file in enumerate(selected_images):
-        image_path = os.path.join(image_dir, image_file)
+    # Navigation buttons
+    col1, col2, col3 = st.columns([1, 2, 1])
+
+    with col1:
+        if st.button("⬅️ Previous") and st.session_state.img_index > 0:
+            st.session_state.img_index -= 1
+
+    with col3:
+        if st.button("Next ➡️") and st.session_state.img_index < len(image_files) - 1:
+            st.session_state.img_index += 1
+
+    # Display the current image
+    if image_files:
+        current_image = image_files[st.session_state.img_index]
+        image_path = os.path.join(image_dir, current_image)
         image = Image.open(image_path)
-        with cols[idx]:
-            st.subheader(f"Image {idx + 1}")
-            st.image(image, use_column_width=True)
+        st.image(image, caption=f"Image {st.session_state.img_index + 1} of {len(image_files)}", use_column_width=True)
+    else:
+        st.write("No images found in the directory.")
