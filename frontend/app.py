@@ -12,10 +12,13 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.initializers import Orthogonal
 import os
 import tempfile
+import path
+import sys
 
 # Set up Streamlit app with multipage navigation
 st.set_page_config(page_title="Time Series App", layout="wide")
-
+dir = path.Path(__file__).abspath()
+sys.append.path(dir.parent.parent)
 # Sidebar Navigation
 with st.sidebar:
     selected = option_menu(
@@ -30,7 +33,7 @@ if selected == "Preprocessing":
     st.title("📂 Data Preprocessing")
     # Display HTML files
     st.write("### View Reports")
-    data_dir = os.path.join("..", "data_statistics")
+    data_dir = ("./data_statistics")
     html_files = [f for f in os.listdir(data_dir) if f.endswith(".html")]
     st.markdown("<h3 style='text-align: center;'> STATISTICS OF THE PREPROCESSED FILES </h3>", unsafe_allow_html=True)
     cols = st.columns(4) 
