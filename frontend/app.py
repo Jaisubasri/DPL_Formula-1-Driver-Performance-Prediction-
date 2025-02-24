@@ -57,7 +57,7 @@ if selected == "Preprocessing":
 
         with cols[idx % 4]:  # Arrange in 4 columns
             if st.button(display_name):
-                webbrowser.open(f'file:///mount/src/dpl_formula-1-driver-performance-prediction-/data_statistics/{file}')
+                webbrowser.open(f'file:////mount/src/dpl_formula-1-driver-performance-prediction-/data_statistics/{file}')
                 
 elif selected == "Feature Engineering":
     
