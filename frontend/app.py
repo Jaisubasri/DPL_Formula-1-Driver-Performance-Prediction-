@@ -57,12 +57,12 @@ if selected == "Preprocessing":
 
         with cols[idx % 4]:  # Arrange in 4 columns
             if st.button(display_name):
-                webbrowser.open(f'file:///../data_statistics/{file}')
+                webbrowser.open(f'file:///mount/src/dpl_formula-1-driver-performance-prediction-/data_statistics/{file}')
                 
 elif selected == "Feature Engineering":
     
     def load_data():
-        return pd.read_csv("../feature_engineering/Normalized_engineered_features.csv")  # Replace with your actual CSV path
+        return pd.read_csv("/mount/src/dpl_formula-1-driver-performance-prediction-/feature_engineering/Normalized_engineered_features.csv")  # Replace with your actual CSV path
 
     def feature_engineering():
         st.title("🛠 Feature Engineering")
@@ -170,11 +170,11 @@ elif selected=="📈 Model & Predictions":
         merged_data[numerical_columns] = scaler.fit_transform(merged_data[numerical_columns])
 
         return merged_data, label_encoders, scaler
-    driver_data_path = os.path.join(".." , "preprocessed_dataset" ,"drivers_preprocessed.csv")
-    constructors_data_path = os.path.join("..", "preprocessed_dataset", "constructors_preprocessed.csv")
-    race_data_path = os.path.join("..", "preprocessed_dataset", "races_preprocessed.csv")
-    results_data_path = os.path.join("..", "preprocessed_dataset", "results_preprocessed.csv")
-    status_data_path = os.path.join("..", "preprocessed_dataset", "status_preprocessed.csv")
+    driver_data_path = os.path.join("mount/src/dpl_formula-1-driver-performance-prediction-" , "preprocessed_dataset" ,"drivers_preprocessed.csv")
+    constructors_data_path = os.path.join("mount/src/dpl_formula-1-driver-performance-prediction-", "preprocessed_dataset", "constructors_preprocessed.csv")
+    race_data_path = os.path.join("mount/src/dpl_formula-1-driver-performance-prediction-", "preprocessed_dataset", "races_preprocessed.csv")
+    results_data_path = os.path.join("mount/src/dpl_formula-1-driver-performance-prediction-", "preprocessed_dataset", "results_preprocessed.csv")
+    status_data_path = os.path.join("mount/src/dpl_formula-1-driver-performance-prediction-", "preprocessed_dataset", "status_preprocessed.csv")
     drivers_data=pd.read_csv(driver_data_path)
     constructors_data=pd.read_csv(constructors_data_path)
     race_data=pd.read_csv(race_data_path)
